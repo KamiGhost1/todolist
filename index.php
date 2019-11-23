@@ -16,6 +16,7 @@ if(!isset($_COOKIE['auth'])){
             src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
+
 </head>
 <body class="bg-lightgrey" style="background: url('assets/logo.jpg') no-repeat; -moz-background-size: 100%; /* Firefox 3.6+ */
     -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
@@ -50,9 +51,9 @@ if(!isset($_COOKIE['auth'])){
        let getData = function () {
            $.get('item.php',f)
        }
-       setInterval(getData, 1000);
+       setInterval(getData, 2000);
     </script>
-    <table id="content" class="text text-white table table-borderless">
+    <table id="content" class="text text-white table table-lightgrey table-borderless">
 
     </table>
 </main>
