@@ -1,11 +1,3 @@
-<?php
-if(!isset($_COOKIE['auth'])){
-    if(!isset($_COOKIE['token'])){
-        header('location: signin.php');
-    }
-}
-?>
-
 <html>
 <head>
     <meta charset="utf8">
@@ -40,7 +32,7 @@ if(!isset($_COOKIE['auth'])){
             let table = document.getElementById('content');
             let html ='';
             data.forEach(function(el) {
-                html +='<tr><td>'+el.id+'</td><td>'+el.task+'</td><td>'+el.action+'</td><td></td></tr>';
+                html +=`<tr><td>${el.id}</td><td onclick="update(${el.id})">${el.task}</td><td onclick="remove(${el.id})">${el.action}</td><td></td></tr>`;
             });
             console.log(html);
             table.innerHTML = html;
@@ -48,6 +40,16 @@ if(!isset($_COOKIE['auth'])){
        let getData = function () {
            $.get('item.php',f)
        }
+       let update = async function(elID){
+            alert(elID+" update");
+       };
+        let remove = async function(elID){
+            alert(elID+" deleted");
+        };
+        let addItem = function (){
+            let html = document.getElementById("add_item").value;
+            alert(html);
+        }
        setInterval(getData, 1000);
     </script>
     <div class="container-fluid">
@@ -64,10 +66,10 @@ if(!isset($_COOKIE['auth'])){
         </table>
     </div>
     <div class="container-fluid">
-        <input type="text" name="" id="" class="text container-fluid">
+        <input type="text" name="" id="add_item" class="text container-fluid">
     </div>
     <div class="container">
-        <input type="button" value="add" class="btn btn-lg btn-primary">
+        <input type="button" value="add" onclick="addItem()" class="btn btn-lg btn-primary">
     </div>
 </main>
 </body>
