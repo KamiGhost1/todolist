@@ -18,10 +18,7 @@ if(!isset($_COOKIE['auth'])){
             crossorigin="anonymous"></script>
 
 </head>
-<body class="bg-lightgrey" style="background: url('assets/logo.jpg') no-repeat; -moz-background-size: 100%; /* Firefox 3.6+ */
-    -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
-    -o-background-size: 100%; /* Opera 9.6+ */
-    background-size: 100%;">
+<body class="bg-dark">
 <header>
     <div class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
@@ -43,7 +40,7 @@ if(!isset($_COOKIE['auth'])){
             let table = document.getElementById('content');
             let html ='';
             data.forEach(function(el) {
-                html +='<tr><td>'+el.text+'</td></tr>';
+                html +='<tr><td>'+el.id+'</td><td>'+el.task+'</td><td>'+el.action+'</td><td></td></tr>';
             });
             console.log(html);
             table.innerHTML = html;
@@ -51,11 +48,27 @@ if(!isset($_COOKIE['auth'])){
        let getData = function () {
            $.get('item.php',f)
        }
-       setInterval(getData, 2000);
+       setInterval(getData, 1000);
     </script>
-    <table id="content" class="text text-white table table-lightgrey table-borderless">
-
-    </table>
+    <div class="container-fluid">
+        <table class="text text-white table table-lightgrey table-borderless">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">task</th>
+                <th scope="col">action</th>
+            </tr>
+            </thead>
+            <tbody id ="content">
+            </tbody>
+        </table>
+    </div>
+    <div class="container-fluid">
+        <input type="text" name="" id="" class="text container-fluid">
+    </div>
+    <div class="container">
+        <input type="button" value="add" class="btn btn-lg btn-primary">
+    </div>
 </main>
 </body>
 </html>
