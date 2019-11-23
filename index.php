@@ -8,6 +8,7 @@
             src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 </head>
 <body class="bg-dark">
@@ -40,10 +41,10 @@
        let getData = function () {
            $.get('item.php',f)
        }
-       let update = async function(elID){
+       let update = function(elID){
             alert(elID+" update");
        };
-        let remove = async function(elID){
+        let remove = function(elID){
             alert(elID+" deleted");
         };
         let addItem = function (){
