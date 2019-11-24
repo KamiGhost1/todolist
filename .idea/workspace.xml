@@ -28,7 +28,7 @@
   <component name="ProjectId" id="1U18QACZoECY1XjRmAIBnQCSWw2" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/GitHubDesktop/Update.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../auth" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
@@ -65,6 +65,7 @@
       <workItem from="1574517426095" duration="4613000" />
       <workItem from="1574522118176" duration="31000" />
       <workItem from="1574531610719" duration="7777000" />
+      <workItem from="1574580132836" duration="29000" />
     </task>
     <servers />
   </component>
