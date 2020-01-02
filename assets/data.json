@@ -1,6 +1,1 @@
-[
-  {"id":1, "task": "milk", "action": "<input:button class=\"btn btn-danger\">delete</input>"},
-  {"id":2,"task": "bread", "action": "<input:button class=\"btn btn-danger\">delete</input>"},
-  {"id":3,"task": "lab", "action": "<input:button class=\"btn btn-danger\">delete</input>"},
-  {"id":4,"task": "pistol", "action": "<input:button class=\"btn btn-danger\">delete</input>"}
-]
+[{"task":"bread","status":"in process"},{"task":"milk","status":"in process"},{"task":"pistol","status":"in process"}]

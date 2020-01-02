@@ -18,48 +18,20 @@
             <div class="navbar-header">
                 <a href="#" class="navbar-brand">TODO</a>
             </div>
-            <nav class="nav">
-                <ul class="justify-content-end">
-                    <a href="logout.php" class="btn btn-dark">Log out</a>
-                </ul>
-            </nav>
         </div>
     </div>
 </header>
 <main onload="getData()">
-    <script type="text/javascript">
-        let f = function(data,status){
-            console.log(data, status);
-            let table = document.getElementById('content');
-            let html ='';
-            data.forEach(function(el) {
-                html +=`<tr><td>${el.id}</td><td onclick="update(${el.id})">${el.task}</td><td onclick="remove(${el.id})">${el.action}</td><td></td></tr>`;
-            });
-            console.log(html);
-            table.innerHTML = html;
-        }
-       let getData = function () {
-           $.get('item.php',f)
-       }
-       let update = function(elID){
-            alert(elID+" update");
-       };
-        let remove = function(elID){
-            alert(elID+" deleted");
-        };
-        let addItem = function (){
-            let html = document.getElementById("add_item").value;
-            alert(html);
-        }
-       setInterval(getData, 1000);
-    </script>
-    <div class="container-fluid">
+
+    <div class="container-fluid" style="display: flex;justify-content: center">
         <table class="text text-white table table-lightgrey table-borderless">
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">task</th>
-                <th scope="col">action</th>
+                <th scope="col">Task</th>
+                <th scope="col">Action</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody id ="content">
@@ -69,9 +41,84 @@
     <div class="container-fluid">
         <input type="text" name="" id="add_item" class="text container-fluid">
     </div>
-    <div class="container">
-        <input type="button" value="add" onclick="addItem()" class="btn btn-lg btn-primary">
+    <div class="container" style="display: flex;justify-content: center;margin-top: 10px"><br>
+        <input type="button" value="Add task" onclick="addItem()" class="btn btn-success btn-lg">
     </div>
 </main>
+<script type="text/javascript">
+    let f = function(data,status){
+        //console.log(data, status);
+        let table = document.getElementById('content');
+        let html ='';
+        let i = 1;
+        data.forEach(function(el) {
+            if(el.status === 'in process')
+                html +=`<tr><td>${i}</td><td onclick="update(${i})">${el.task}</td><td ><button type="button" onclick="remove(${i})" class=\"btn btn-danger\">delete</button></td><td onclick="updateStatus(${i})" class="text-warning">${el.status}</td></tr>`;
+            else
+                html +=`<tr><td>${i}</td><td onclick="update(${i})">${el.task}</td><td ><button type="button" onclick="remove(${i})" class=\"btn btn-danger\">delete</button></td><td onclick="updateStatus(${i})" class="text-success">${el.status}</td></tr>`;
+            i++;
+        });
+        //console.log(html);
+        table.innerHTML = html;
+    };
+    let getData = function () {
+        $.get('item.php',f)
+    };
+    let update = function(elID){
+        let newTask = prompt('Enter updated task!');
+        $.ajax({
+            url:'item.php',
+            type:'PUT',
+            data:JSON.stringify({'task':elID,'update':newTask}),
+            success:()=>{
+                console.log('task updated!')
+            },
+            error:()=>{
+                console.log('update error!')
+            }
+        });
+    };
+    let remove = function(elID){
+        $.ajax({
+            url:'item.php',
+            type:'DELETE',
+            data:JSON.stringify({'task':elID}),
+            success:()=>{
+                console.log('task deleted!')
+            },
+            error:()=>{
+                console.log('delete error!')
+            }
+        });
+    };
+    let addItem = function (){
+        let html = document.getElementById("add_item").value;
+        $.ajax({
+            url:'item.php',
+            type:'POST',
+            data:JSON.stringify({'task':html}),
+            success:()=>{
+                console.log('task has been sanding');
+            },
+            error:()=>{
+                console.log('error! task has not sanding');
+            },
+        });
+    };
+    let updateStatus = function (elID) {
+        $.ajax({
+            url:'item.php',
+            type:'PUT',
+            data:JSON.stringify({'task':elID,'status':1}),
+            success:()=>{
+                console.log('status updated!')
+            },
+            error:()=>{
+                console.log('status error!')
+            }
+        });
+    };
+    setInterval(getData, 1000);
+</script>
 </body>
 </html>
