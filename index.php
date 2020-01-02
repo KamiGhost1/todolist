@@ -68,8 +68,8 @@
         let newTask = prompt('Enter updated task!');
         $.ajax({
             url:'item.php',
-            type:'PUT',
-            data:JSON.stringify({'task':elID,'update':newTask}),
+            type:'POST',
+            data:JSON.stringify({'put':1,'task':elID,'update':newTask}),
             success:()=>{
                 console.log('task updated!')
             },
@@ -81,8 +81,8 @@
     let remove = function(elID){
         $.ajax({
             url:'item.php',
-            type:'DELETE',
-            data:JSON.stringify({'task':elID}),
+            type:'POST',
+            data:JSON.stringify({'delete':1,'task':elID}),
             success:()=>{
                 console.log('task deleted!')
             },
@@ -96,7 +96,7 @@
         $.ajax({
             url:'item.php',
             type:'POST',
-            data:JSON.stringify({'task':html}),
+            data:JSON.stringify({'post':1,'task':html}),
             success:()=>{
                 console.log('task has been sanding');
             },
@@ -108,8 +108,8 @@
     let updateStatus = function (elID) {
         $.ajax({
             url:'item.php',
-            type:'PUT',
-            data:JSON.stringify({'task':elID,'status':1}),
+            type:'POST',
+            data:JSON.stringify({'put':1,'task':elID,'status':1}),
             success:()=>{
                 console.log('status updated!')
             },
